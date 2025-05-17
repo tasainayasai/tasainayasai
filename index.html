@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <canvas id="myChart" width="600" height="400"></canvas>
+  <div class="input-area">
+    <input type="text" id="myInput" placeholder="数字を入力!">
+    <button onclick="draw()">実行</button>
+  </div>
+  <style>
+body {
+  max-width: 335px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+canvas {
+  width: 100% !important;       /* 横幅いっぱいに広げる */
+  height: auto !important;      /* 高さは自動で調整 */
+  aspect-ratio: 335 / 400;      /* 幅335pxに対して高さ400pxの比率を維持 */
+  display: block;
+  margin: 0 auto 20px;
+}
+
+input, button {
+  font-size: 20px;
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  margin: 10px auto;
+  display: block;
+  box-sizing: border-box;
+}
+  </style>
+<script>
+    let chart;
+
+    function draw() {
+        const inputvalue = document.getElementById("myInput").value;
+        const a = Number(inputvalue);
+
+    const xList = [];
+    const yList = [];
+
+    for (let x = -20; x <=20 ;x++){
+        xList.push(x);
+        const y = a *(x * x)
+        yList.push(y);
+    }
+    if (chart){
+        chart.destroy();
+    }
+
+      chart = new Chart(document.getElementById("myChart"), {
+          type: "line",
+          data: {
+              labels: xList,
+              datasets: [{
+                  label: `y=${a}x²`,
+                  data: yList,
+                  borderColor: "blue",
+                  fill: false,
+                  tension: 0.1,
+              }]
+          },
+          options: {
+              plugins: {
+                  legend: {
+                      labels: {
+                          font: {
+                              size: 24  // 凡例ラベルの文字サイズ
+                          }
+                      }
+                  }
+              },
+              scales: {
+                  x: {
+                      title: {
+                          display: true,
+                          text: "x",
+                          font: {
+                              size: 20  // x軸タイトル文字サイズ
+                          }
+                      },
+                      ticks: {
+                          font: {
+                              size: 18  // x軸目盛り数字の文字サイズ
+                          }
+                      }
+                  },
+                  y: {
+                      min: 0,
+                      max: 1000,                  
+                      title: {
+                          display: true,
+                          text: "y",
+                          font: {
+                              size: 20  // y軸タイトル文字サイズ
+                          }
+                      },
+                      ticks: {
+                          font: {
+                              size: 18  // y軸目盛り数字の文字サイズ
+                          }
+                      }
+                  }
+              }
+          }
+      });
+}
+</script>
+</html>
