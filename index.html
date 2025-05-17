@@ -11,30 +11,45 @@
     <button onclick="draw()">実行</button>
   </div>
   <style>
-body {
-  max-width: 335px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: sans-serif;
-}
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
 
-canvas {
-  width: 100% !important;       /* 横幅いっぱいに広げる */
-  height: auto !important;      /* 高さは自動で調整 */
-  aspect-ratio: 335 / 400;      /* 幅335pxに対して高さ400pxの比率を維持 */
-  display: block;
-  margin: 0 auto 20px;
-}
+    #myChart {
+      margin-top: 40px;
+    }
 
-input, button {
-  font-size: 20px;
-  padding: 10px;
-  width: 100%;
-  max-width: 300px;
-  margin: 10px auto;
-  display: block;
-  box-sizing: border-box;
-}
+    .input-area {
+      margin-top: 100px; /* もっと下に */
+    }
+
+    .input-area input {
+      font-size: 24px;      /* 大きい文字 */
+      padding: 12px 20px;   /* 入力欄の大きさ */
+      width: 250px;         /* 幅も大きめ */
+      margin: 10px;
+      border-radius: 6px;   /* 角丸 */
+      border: 2px solid #333;
+    }
+
+    .input-area button {
+      font-size: 24px;
+      padding: 12px 30px;
+      margin-left: 10px;
+      border-radius: 6px;
+      border: none;
+      background-color: #4a90e2;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .input-area button:hover {
+      background-color: #357abd;
+    }
   </style>
 <script>
     let chart;
